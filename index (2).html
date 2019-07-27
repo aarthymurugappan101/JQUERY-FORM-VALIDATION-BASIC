@@ -1,0 +1,198 @@
+<html>
+<head>
+<style>	
+	h1 {
+		color: #7157ff;
+	}
+
+	hr {
+		display: block;
+		border: 0;
+		border-top: 3px solid #f90;
+		padding: 0; 
+	}
+	
+	textarea {
+		width: 70%;
+	}
+	
+	#div_main {
+		font-family: Sans-serif;
+		margin: auto;
+		margin-top: 30px;
+		width: 500px;
+	}
+	
+	#div_left {
+		width: 150px;
+		display: inline-block;
+		float: left;
+	}
+	
+	#div_left p {
+		margin-bottom: 19px;
+	}
+	
+	#div_right {
+		width: 350px;
+		display: inline-block;
+		float: right;
+	}
+	
+	.clear {
+		clear: both;
+	}
+	#divMessage1,#divMessage2,#divMessage3,#divMessage4,#divMessage5,#divMessage6,#divMessage7{
+		color: red;
+	}
+	.over{
+		color: yellow;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+$(function(){
+		$("#submit").on("click",function(event){
+			var txtMovieTitle=$('#txtMovieTitle').val();
+			var selectType=$('#selectType').val();
+			var txtPictureName=$('#txtPictureName').val();
+			var txtDirector=$('#txtDirector').val();
+			var txtPrice=$('#txtPrice').val();
+			var txtDescription=$('#txtDescription').val();
+			var txtRating=$('#txtRating').val(); //out of 5//
+
+			if(txtMovieTitle==""){
+				$('#txtMovieTitle').css("background-color","yellow");
+				$('#divMessage1').html(" Title of Movie Item is required");
+			}else{
+				$('#txtMovieTitle').css("background-color","white");
+				$('#divMessage1').hide();
+			};
+			if(selectType==""){ 
+				$('#divMessage2').html("Type of Movie is required.");
+			}else{
+				$('#divMessage2').hide();
+			};
+			if(txtPictureName==""){
+				$('#txtPictureName').css("background-color","yellow");
+				$('#divMessage3').html("Name of Movie is required");
+			}else{
+				$('#txtPictureName').css("background-color","white");
+				$('#divMessage3').hide();
+			};
+			if(txtDirector==""){
+				$('#txtDirector').css("background-color","yellow");
+				$('#divMessage4').html("Name of Director is required");
+			}else{
+				$('#txtDirector').css("background-color","white");
+				$('#divMessage4').hide();
+			};
+			if(txtDescription==""){
+				$('#txtDescription').css("background-color","yellow");
+				$('#divMessage6').html("Description is required.");			
+			}else{
+				$('#txtDescription').css("background-color","white");
+				$('#divMessage6').hide();
+			};
+			if(isNaN(txtRating)|| txtRating <1 || txtRating> 5){
+				$('#txtRating').css("background-color","yellow");
+				$('#divMessage7').html("The movie rating must be out of 5");
+			}else{
+				$('#txtRating').css("background-color","white");
+				$('#divMessage7').hide();
+			};
+			if(txtPrice==""){
+					$('#txtPrice').css("background-color","yellow");
+					$('#divMessage5').html(" Price is required and must be a number or decimal.");
+				}else{
+					$('#txtPrice').css("background-color","white");
+					$('#divMessage5').hide();
+				}
+			});
+	$('input[id*="txtPrice"]').keydown(function(event){
+		if(event.shiftKey == true){
+			event.preventDefault();
+		}
+		if((event.keyCode >= 48 && event.keyCode <= 57)||
+			(event.keyCode>=96&&event.keyCode<=105)||
+			(event.keyCode == 190)||(event.keyCode==8)){
+		}else{
+			event.preventDefault();
+		}
+		if($(this).val().event.keyCode == 190){
+			event.preventDefault();
+		}
+		});
+	var maxLength = 100;
+	$('textarea').keyup(function() {
+	var length = $(this).val().length;
+	var length = maxLength-length;
+	$('#chars').text(length);
+	});
+});
+</script>
+</head>
+<body>
+<div id="div_main">
+		<h1>
+			Add Movie Title
+		</h1>
+		<hr>
+	
+		<form id="myForm" name="myForm" formenctype="multipart/form-data" 
+		action="" method="GET" >
+			<!-- formenctype=multipart/form-data - used to upload files securely -->
+			<div id="div_left">
+				<p>Name:</p>
+				<p>Type:</p>
+				<p>Picture Name:</p>
+				<p>Director:</p>
+				<p>Price($):</p>
+				<p>Ratings &#11088;:</p>
+			</div>
+				<div id="div_right">
+					<p><input type="text" id="txtMovieTitle" name="txtMovieTitle" value="" placeholder="movie name" ></p>
+					<p>
+					<select name="selectType" id="selectType">
+						<option value=""> Select a Type</option>
+						<option value="horror">Horror</option>
+						<option value="comedy">Comedy</option>
+						<option value="action">Action</option>
+						<option value="scifi">Sci-Fi</option>
+					</select>
+					</p>
+					<p><input type="text" id="txtPictureName" name="txtPictureName" value=""></p>
+					<p><input type="text" id="txtDirector" name="txtDirector" value="" placeholder="Director's name"></p>
+					<p><input type="text" id="txtPrice" name="txtPrice" value="" ></p>
+					<p><input type="text" id="txtRating" name="txtRating" value="" placeholder="ratings/5"></p>
+				</div>	
+				<div class="clear"></div>
+				<div id="Description">
+					Description:
+					<br>
+					<textarea id="txtDescription" placeholder="Description" name="txtDescription"></textarea>
+				</div>	
+					<span id="chars">100</span> characters remaining
+				<br>
+
+				<input type="button" name="submit" id="submit" value="Submit" />
+
+		</form>
+		<div id="divMessage1"></div>
+		<br>
+		<div id="divMessage2"></div>
+		<br>
+		<div id="divMessage3"></div>
+		<br>
+		<div id="divMessage4"></div>
+		<br>
+		<div id="divMessage5"></div>
+		<br>
+		<div id="divMessage6"></div>
+		<br>
+		<div id="divMessage7"></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<html>
+<head>
+	<script>
+	
+	</script>
+<style>
+	table, td{		
+		border: 1px solid black;
+		margin: 5px;
+		padding: 5px;
+		position: relative;
+		left: 5%;
+		color: #7157ff;
+		border-collapse:collapse; 
+		width: auto;
+		text-align: center;
+	}
+	#table {
+		color: #7157ff;
+		border: 0;
+		border-top: 3px solid #f90;
+		padding: 0; 
+		font-family: Sans-serif;
+		margin: auto;
+		margin-top: 10px;
+		width: 350px;
+		clear: both;
+	}
+	span{
+		text-decoration: underline black;
+	}
+	h3{
+		font-family: Sans-serif;
+		color: #7157ff;
+		text-align: center;
+		font-size: 25;
+		font-weight: bolder;
+	}
+	#btn_del1,#btn_del2,#btn_del3,#btn_del4{
+		-webkit-transition-duration: 0.4s; /* Safari */
+  		transition-duration: 0.4s;
+  		cursor: pointer;
+		background-color: #f90;
+		text-align: center;
+		color: white;
+	}
+	#btn_del1:hover,#btn_del2:hover,#btn_del3:hover,#btn_del4:hover{
+		background-color: white;
+		color: black;
+		border: 2px solid #f90;
+	}
+	#btn_deleteAll{
+		-webkit-transition-duration: 0.4s; /* Safari */
+  		transition-duration: 0.4s;
+  		cursor: pointer;
+		background-color: #f90;
+		text-align: center;
+		padding: 5px 7px;
+		display: inline-block;
+		font-family: sans-serif;
+		font-size: 16px;
+		text-decoration: none;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		position: absolute;
+		left: 46%;
+		bottom: 60%;
+	}
+	#btn_deleteAll:hover{
+		background-color: white;
+		color: black;
+		border: 2px solid #f90;
+	}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+$(function(){
+	//select all function
+		$('#check_deleteAll').on('click',function(){
+			var chk = $(this).prop('checked')
+
+			if(chk){
+			$('#check_del1').prop('checked',true);
+			$('#check_del2').prop('checked',true);
+			$('#check_del3').prop('checked',true);
+			$('#check_del4').prop('checked',true);
+			}else{
+			$('#check_del1').prop('checked',false);
+			$('#check_del2').prop('checked',false);
+			$('#check_del3').prop('checked',false);
+			$('#check_del4').prop('checked',false);
+			}
+		});
+		// delete function
+		$('#btn_deleteAll').on('click',function(){
+			$(':checkbox:checked').parent().parent().remove();
+		})
+		$("#btn_del1").on('click',function(){
+			$(':checkbox:checked').parent().parent().remove();
+		})
+		$("#btn_del2").on('click',function(){
+			$(':checkbox:checked').parent().parent().remove();
+		})
+		$("#btn_del3").on('click',function(){
+			$(':checkbox:checked').parent().parent().remove();
+		})
+		$("#btn_del4").on('click',function(){
+			$(':checkbox:checked').parent().parent().remove();
+		})
+		// disabled buttons
+		var	button =$('#btn_del1','#btn_del2','#btn_del3'
+						,'#btn_del4').prop("disabled",true);
+		var radio =$("input[type='checkbox]");
+		radio.on('change',function(){
+			button.prop('disabled',disable,radios.filter(':checked'))
+		});
+	});
+</script>
+</head>
+<body>
+	<h3>Update/Delete Movies</h3>
+	<div id="table">
+		<br>
+		<span>Select All </span>
+		<input type="checkbox" id="check_deleteAll">
+			<table>
+				<tr>
+					<td>
+						<input type="checkbox" id="check_del1">
+					</td>
+					<td>
+						Avengers: The Endgame
+					</td>
+					<td>
+						<button id="btn_del1">Delete</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" id="check_del2">
+					</td>
+					<td>
+						The Lion King
+					</td>
+					<td>
+						<button id="btn_del2">Delete</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" id="check_del3">
+					</td>
+					<td>
+						Toy Story 4
+					</td>
+					<td>
+						<button id="btn_del3">Delete</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" id="check_del4">
+					</td>
+					<td>
+						Crawl
+					</td>
+					<td>
+						<button id="btn_del4">Delete</button>
+					</td>
+				</tr>
+			</table>
+		<button id="btn_deleteAll">Delete All</button>
+	</div>
+</body>
+</html>
